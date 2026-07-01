@@ -15,7 +15,7 @@ interface NavLink {
 
 const SUPPORTED_LANGS = ['vi', 'en', 'ru', 'ja'];
 // id-шники секций на Главной, за которыми следит scroll-spy (те же, что fragment в links)
-const SCROLL_SPY_IDS = ['story', 'instructor'];
+const SCROLL_SPY_IDS = ['about', 'sensei'];
 // высота навбара + запас — та же величина, что scroll-mt-28 (7rem = 112px) у секций
 const SCROLL_SPY_OFFSET = 120;
 
