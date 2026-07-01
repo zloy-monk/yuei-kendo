@@ -98,7 +98,9 @@
   <!-- МОБИЛЬНОЕ МЕНЮ — top-full позиционирует его прямо под navbar -->
   @if (isMenuOpen()) {
     <div class="md:hidden absolute top-full left-0 right-0 z-50 px-4 pt-2">
-      <div class="rounded-2xl border border-white/10 bg-surface text-white p-4 flex flex-col gap-4">
+      <div
+        class="rounded-2xl border border-white/10 bg-dark/80 backdrop-blur-md text-white p-4 flex flex-col gap-4"
+      >
         <!-- Ссылки -->
         <ul class="flex flex-col gap-1">
           @for (link of links; track link.key) {
@@ -109,7 +111,7 @@
                   routerLinkActive="active"
                   [routerLinkActiveOptions]="{ exact: link.path === '' }"
                   (click)="closeMenu()"
-                  class="block px-3 py-2 rounded-lg transition-colors [&.active]:text-primary [&.active]:bg-primary/10"
+                  class="block px-3 py-2 border-l-2 border-transparent transition-colors [&.active]:text-primary [&.active]:border-primary"
                 >
                   {{ translate.t(link.key) }}
                 </a>
@@ -126,24 +128,23 @@
               target="_blank"
               rel="noopener noreferrer"
               (click)="closeMenu()"
-              class="block px-3 py-2 rounded-lg"
+              class="block px-3 py-2 text-center rounded-full bg-primary text-white text-sm font-medium hover:opacity-90"
             >
               {{ translate.t(link.key) }}
             </a>
           }
         }
 
-        <!-- Lang dropdown в мобильном меню — горизонтальный список кнопок -->
-        <div class="flex gap-1 pt-2 border-t border-white/10">
+        <!-- Lang dropdown в мобильном меню — инлайн-список с подчёркиванием, как у пунктов меню -->
+        <div class="flex justify-evenly items-center gap-5 pt-3 border-t border-white/10">
           @for (l of ['vi', 'en', 'ru', 'ja']; track l) {
             <button
               (click)="switchLang(l)"
-              class="flex-1 py-1.5 rounded-full text-xs font-medium transition-all cursor-pointer"
-              [class.bg-primary]="lang() === l"
-              [class.text-white]="lang() === l"
-              [class.text-muted]="lang() !== l"
+              class="text-sm font-medium uppercase tracking-wide pb-1 border-b-2 border-transparent transition-colors cursor-pointer text-muted hover:text-white"
+              [class.text-primary]="lang() === l"
+              [class.border-primary]="lang() === l"
             >
-              {{ l.toUpperCase() }}
+              {{ l }}
             </button>
           }
         </div>
