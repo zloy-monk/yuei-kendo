@@ -1,9 +1,11 @@
 <div class="fixed top-0 left-0 right-0 z-50 px-4 pt-3">
   <div class="container mx-auto">
-    <nav class="grid grid-cols-3 items-center px-6 py-2 rounded-full transition-all duration-300"
-         [class.bg-dark/80]="isScrolled()"
-         [class.backdrop-blur-md]="isScrolled()"
-         [style.box-shadow]="isScrolled() ? '0 4px 24px rgba(0,0,0,0.45)' : ''">
+    <nav
+      class="grid grid-cols-3 items-center px-6 py-2 rounded-full transition-all duration-300"
+      [class.bg-dark/80]="isScrolled()"
+      [class.backdrop-blur-md]="isScrolled()"
+      [style.box-shadow]="isScrolled() ? '0 4px 24px rgba(0,0,0,0.45)' : ''"
+    >
       <!-- Логотип -->
       <a class="flex items-center w-fit" [routerLink]="buildLink('')" (click)="closeMenu()">
         <img src="assets/img/yuei.png" alt="YUEI KENDO logo" class="w-14 h-14" />
@@ -39,9 +41,12 @@
             class="flex items-center gap-1.5 px-3 py-1.5 rounded-full text-sm font-medium bg-surface text-white transition-colors hover:bg-white/10 cursor-pointer"
           >
             {{ lang().toUpperCase() }}
-            <lucide-icon [img]="ChevronDownIcon" [size]="14"
+            <lucide-icon
+              [img]="ChevronDownIcon"
+              [size]="14"
               class="transition-transform duration-200"
-              [class.rotate-180]="isLangOpen()" />
+              [class.rotate-180]="isLangOpen()"
+            />
           </button>
 
           <!-- Дропдаун список -->
@@ -67,7 +72,7 @@
         @for (link of links; track link.key) {
           @if (link.external) {
             <a
-              class="px-3 py-1.5 rounded-full bg-primary text-white text-sm font-medium"
+              class="px-3 py-1.5 rounded-full bg-primary text-white text-sm font-medium hover:opacity-90"
               [href]="link.path"
               target="_blank"
               rel="noopener noreferrer"

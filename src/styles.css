@@ -9,7 +9,8 @@
   --font-sans: 'Space Grotesk', 'Noto Sans JP', 'Noto Sans', sans-serif;
 }
 
-html, body {
+html,
+body {
   overflow-x: hidden;
 }
 
