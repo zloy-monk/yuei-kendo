@@ -1,0 +1,28 @@
+{
+  "id": "1",
+  "slug": "introduction-to-kendo",
+  "publishedAt": "2024-01-15",
+  "author": "Yuei Team",
+  "translations": {
+    "vi": {
+      "title": "Kendo là gì? Giới thiệu cho người mới bắt đầu",
+      "excerpt": "Kendo là một môn võ thuật truyền thống của Nhật Bản...",
+      "content": "Kendo là một môn võ thuật truyền thống của Nhật Bản sử dụng kiếm tre (shinai) và áo giáp bảo hộ (bogu). Đây không chỉ là môn thể thao mà còn là con đường rèn luyện tinh thần và thể chất."
+    },
+    "en": {
+      "title": "What is Kendo? An Introduction for Beginners",
+      "excerpt": "Kendo is a traditional Japanese martial art...",
+      "content": "Kendo is a traditional Japanese martial art using bamboo swords (shinai) and protective armor (bogu). It is not just a sport but a path to mental and physical cultivation."
+    },
+    "ru": {
+      "title": "Что такое кендо? Введение для начинающих",
+      "excerpt": "Кендо — традиционное японское боевое искусство...",
+      "content": "Кендо — традиционное японское боевое искусство с использованием бамбуковых мечей (синай) и защитного снаряжения (богу). Это не просто спорт, но и путь к духовному и физическому совершенствованию."
+    },
+    "ja": {
+      "title": "剣道とは？初心者のための入門",
+      "excerpt": "剣道は日本の伝統的な武道です...",
+      "content": "剣道は竹刀と防具を使った日本の伝統的な武道です。スポーツであるだけでなく、心身を鍛える道でもあります。"
+    }
+  }
+}

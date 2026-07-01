@@ -1,0 +1,8 @@
+{
+  "slots": [
+    { "day": "tuesday",   "time": "19:00–21:00", "location": "Cầu Giấy",   "level": "all" },
+    { "day": "thursday",  "time": "19:00–21:00", "location": "Hoàng Mai",  "level": "all" },
+    { "day": "saturday",  "time": "08:00–10:00", "location": "Đống Đa",    "level": "beginner" },
+    { "day": "sunday",    "time": "08:00–10:00", "location": "Cầu Giấy",   "level": "intermediate" }
+  ]
+}

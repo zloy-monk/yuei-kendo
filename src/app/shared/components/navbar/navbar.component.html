@@ -1,0 +1,162 @@
+<div class="fixed top-0 left-0 right-0 z-50 px-4 pt-3">
+  <div class="container mx-auto">
+    <nav class="grid grid-cols-3 items-center px-6 py-2 rounded-full transition-all duration-300"
+         [class.bg-dark/80]="isScrolled()"
+         [class.backdrop-blur-md]="isScrolled()"
+         [style.box-shadow]="isScrolled() ? '0 4px 24px rgba(0,0,0,0.45)' : ''">
+      <!-- Логотип -->
+      <a class="flex items-center w-fit" [routerLink]="buildLink('')" (click)="closeMenu()">
+        <img src="/assets/img/yuei.png" alt="YUEI KENDO logo" class="w-14 h-14" />
+        <span class="font-bold text-white">YUEI KENDO</span>
+      </a>
+
+      <!-- ДЕСКТОП: ссылки -->
+      <ul class="hidden md:flex gap-6 justify-center">
+        @for (link of links; track link.key) {
+          @if (!link.external) {
+            <li>
+              <a
+                [routerLink]="buildLink(link.path)"
+                routerLinkActive="active"
+                [routerLinkActiveOptions]="{ exact: link.path === '' }"
+                class="pb-1 transition-colors text-sm font-medium text-white [&.active]:border-b-2 [&.active]:border-primary [&.active]:text-primary"
+              >
+                {{ translate.t(link.key) }}
+              </a>
+            </li>
+          }
+        }
+      </ul>
+
+      <!-- ДЕСКТОП: lang dropdown + кнопка "Записаться" -->
+      <div class="hidden md:flex items-center gap-3 justify-end">
+        <!-- Lang dropdown -->
+        <!-- relative на обёртке — дропдаун позиционируется относительно неё -->
+        <div class="relative">
+          <!-- Кнопка: текущий язык + стрелка -->
+          <button
+            (click)="toggleLang()"
+            class="flex items-center gap-1.5 px-3 py-1.5 rounded-full text-sm font-medium bg-surface text-white transition-colors hover:bg-white/10 cursor-pointer"
+          >
+            {{ lang().toUpperCase() }}
+            <lucide-icon [img]="ChevronDownIcon" [size]="14"
+              class="transition-transform duration-200"
+              [class.rotate-180]="isLangOpen()" />
+          </button>
+
+          <!-- Дропдаун список -->
+          @if (isLangOpen()) {
+            <div
+              class="absolute right-0 top-full mt-2 min-w-[80px] rounded-xl border border-white/10 bg-surface text-white shadow-lg overflow-hidden z-50"
+            >
+              @for (l of ['vi', 'en', 'ru', 'ja']; track l) {
+                <button
+                  (click)="switchLang(l)"
+                  class="w-full px-4 py-2 text-sm text-left transition-colors cursor-pointer hover:bg-white/10"
+                  [class.text-primary]="lang() === l"
+                  [class.font-semibold]="lang() === l"
+                >
+                  {{ l.toUpperCase() }}
+                </button>
+              }
+            </div>
+          }
+        </div>
+
+        <!-- CTA "Записаться" -->
+        @for (link of links; track link.key) {
+          @if (link.external) {
+            <a
+              class="px-3 py-1.5 rounded-full bg-primary text-white text-sm font-medium"
+              [href]="link.path"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              {{ translate.t(link.key) }}
+            </a>
+          }
+        }
+      </div>
+
+      <!-- МОБИЛЬ: бургер -->
+      <button
+        class="md:hidden p-2 text-white col-start-3 justify-self-end"
+        (click)="toggleMenu()"
+        [attr.aria-expanded]="isMenuOpen()"
+        aria-label="Toggle menu"
+      >
+        <lucide-icon [img]="isMenuOpen() ? XIcon : MenuIcon" [size]="24" />
+      </button>
+    </nav>
+  </div>
+
+  <!-- МОБИЛЬНОЕ МЕНЮ — top-full позиционирует его прямо под navbar -->
+  @if (isMenuOpen()) {
+    <div class="md:hidden absolute top-full left-0 right-0 z-50 px-4 pt-2">
+      <div class="rounded-2xl border border-white/10 bg-surface text-white p-4 flex flex-col gap-4">
+        <!-- Ссылки -->
+        <ul class="flex flex-col gap-1">
+          @for (link of links; track link.key) {
+            @if (!link.external) {
+              <li>
+                <a
+                  [routerLink]="buildLink(link.path)"
+                  routerLinkActive="active"
+                  [routerLinkActiveOptions]="{ exact: link.path === '' }"
+                  (click)="closeMenu()"
+                  class="block px-3 py-2 rounded-lg transition-colors [&.active]:text-primary [&.active]:bg-primary/10"
+                >
+                  {{ translate.t(link.key) }}
+                </a>
+              </li>
+            }
+          }
+        </ul>
+
+        <!-- Записаться -->
+        @for (link of links; track link.key) {
+          @if (link.external) {
+            <a
+              [href]="link.path"
+              target="_blank"
+              rel="noopener noreferrer"
+              (click)="closeMenu()"
+              class="block px-3 py-2 rounded-lg"
+            >
+              {{ translate.t(link.key) }}
+            </a>
+          }
+        }
+
+        <!-- Lang dropdown в мобильном меню — горизонтальный список кнопок -->
+        <div class="flex gap-1 pt-2 border-t border-white/10">
+          @for (l of ['vi', 'en', 'ru', 'ja']; track l) {
+            <button
+              (click)="switchLang(l)"
+              class="flex-1 py-1.5 rounded-full text-xs font-medium transition-all cursor-pointer"
+              [class.bg-primary]="lang() === l"
+              [class.text-white]="lang() === l"
+              [class.text-muted]="lang() !== l"
+            >
+              {{ l.toUpperCase() }}
+            </button>
+          }
+        </div>
+      </div>
+    </div>
+  }
+</div>
+
+<!-- BACKDROP для бургер-меню — тёмный с блюром, только на мобиле -->
+@if (isMenuOpen()) {
+  <div
+    class="fixed inset-0 z-40 bg-black/60 backdrop-blur-sm md:hidden"
+    (click)="closeMenu()"
+    aria-hidden="true"
+  ></div>
+}
+
+<!-- BACKDROP для lang dropdown — прозрачный, только закрывает по клику вне -->
+@if (isLangOpen()) {
+  <div class="fixed inset-0 z-40" (click)="isLangOpen.set(false)" aria-hidden="true"></div>
+}

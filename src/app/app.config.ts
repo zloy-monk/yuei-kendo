@@ -1,12 +1,18 @@
 import { ApplicationConfig, provideBrowserGlobalErrorListeners } from '@angular/core';
-import { provideRouter } from '@angular/router';
-
+import { provideHttpClient, withFetch } from '@angular/common/http';
+import { provideRouter, withComponentInputBinding, withInMemoryScrolling } from '@angular/router';
+import { provideClientHydration, withEventReplay } from '@angular/platform-browser';
 import { routes } from './app.routes';
-import { provideClientHydration } from '@angular/platform-browser';
 
 export const appConfig: ApplicationConfig = {
   providers: [
     provideBrowserGlobalErrorListeners(),
-    provideRouter(routes), provideClientHydration()
-  ]
+    // withFetch — использует браузерный fetch вместо XHR, работает и в Node.js (SSR)
+    provideHttpClient(withFetch()),
+    // withComponentInputBinding — позволяет получать route params напрямую через @Input()
+    // Например: @Input() lang!: string; вместо inject(ActivatedRoute)
+    provideRouter(routes, withComponentInputBinding(), withInMemoryScrolling({ scrollPositionRestoration: 'top' })),
+    // withEventReplay — запоминает события пользователя во время гидратации и воспроизводит их
+    provideClientHydration(withEventReplay()),
+  ],
 };
