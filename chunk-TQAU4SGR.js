@@ -1,1 +1,0 @@
-import{Ra as t,hb as n,ib as a,vb as p}from"./chunk-4OP2MDEC.js";var m=class o{static \u0275fac=function(e){return new(e||o)};static \u0275cmp=t({type:o,selectors:[["app-blog"]],decls:2,vars:0,template:function(e,i){e&1&&(n(0,"p"),p(1,"Blog page"),a())},encapsulation:2})};export{m as BlogComponent};
