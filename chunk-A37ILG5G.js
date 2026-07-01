@@ -1,0 +1,1 @@
+import{Ra as n,hb as o,ib as s,vb as a}from"./chunk-4OP2MDEC.js";var p=class t{static \u0275fac=function(e){return new(e||t)};static \u0275cmp=n({type:t,selectors:[["app-events"]],decls:2,vars:0,template:function(e,i){e&1&&(o(0,"p"),a(1,"Events page"),s())},encapsulation:2})};export{p as EventsComponent};

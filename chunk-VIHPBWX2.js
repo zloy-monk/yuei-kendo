@@ -1,0 +1,1 @@
+import{Ra as t,hb as n,ib as s,vb as a}from"./chunk-4OP2MDEC.js";var r=class o{static \u0275fac=function(e){return new(e||o)};static \u0275cmp=t({type:o,selectors:[["app-glossary"]],decls:2,vars:0,template:function(e,m){e&1&&(n(0,"p"),a(1,"Glossary page"),s())},encapsulation:2})};export{r as GlossaryComponent};
