@@ -24,7 +24,7 @@ html, body {
   left: 50%;
   width: 200vmax;
   height: 200vmax;
-  background-image: url('/assets/img/yuei.png');
+  background-image: url('assets/img/yuei.png');
   background-repeat: repeat;
   background-size: 70px 70px;
   opacity: 0.3;

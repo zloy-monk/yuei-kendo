@@ -21,7 +21,7 @@ export class HomeComponent {
   ];
 
   readonly instructor = {
-    photo: '/assets/img/instructor.png',
+    photo: 'assets/img/instructor.png',
     name: 'Nguyễn Mạnh Hưng',
     dan: '5段 (Godan)',
     credKeys: [

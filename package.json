@@ -8,7 +8,7 @@
     "watch": "ng build --watch --configuration development",
     "test": "ng test",
     "serve:ssr:yuei-kendo": "node dist/yuei-kendo/server/server.mjs",
-    "deploy": "ng build --base-href /yuei-kendo/ && cp dist/yuei-kendo/browser/index.csr.html dist/yuei-kendo/browser/index.html && cp dist/yuei-kendo/browser/index.csr.html dist/yuei-kendo/browser/404.html && touch dist/yuei-kendo/browser/.nojekyll && gh-pages -d dist/yuei-kendo/browser -t true"
+    "deploy": "ng build --base-href /yuei-kendo/ && cp dist/yuei-kendo/browser/index.csr.html dist/yuei-kendo/browser/index.html && cp dist/yuei-kendo/browser/index.csr.html dist/yuei-kendo/browser/404.html && touch dist/yuei-kendo/browser/.nojekyll && gh-pages -d dist/yuei-kendo/browser -t"
   },
   "private": true,
   "packageManager": "npm@10.9.8",

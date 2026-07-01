@@ -10,11 +10,11 @@ export class AboutComponent {
   translate = inject(TranslateService);
 
   readonly gallery = [
-    '/assets/img/gallery-1.jpg',
-    '/assets/img/gallery-2.jpg',
-    '/assets/img/gallery-3.jpg',
-    '/assets/img/gallery-4.jpg',
-    '/assets/img/gallery-5.jpg',
-    '/assets/img/gallery-6.jpg',
+    'assets/img/gallery-1.jpg',
+    'assets/img/gallery-2.jpg',
+    'assets/img/gallery-3.jpg',
+    'assets/img/gallery-4.jpg',
+    'assets/img/gallery-5.jpg',
+    'assets/img/gallery-6.jpg',
   ];
 }
