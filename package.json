@@ -7,7 +7,8 @@
     "build": "ng build",
     "watch": "ng build --watch --configuration development",
     "test": "ng test",
-    "serve:ssr:yuei-kendo": "node dist/yuei-kendo/server/server.mjs"
+    "serve:ssr:yuei-kendo": "node dist/yuei-kendo/server/server.mjs",
+    "deploy": "ng build --base-href /yuei-kendo/ && cp dist/yuei-kendo/browser/index.csr.html dist/yuei-kendo/browser/index.html && cp dist/yuei-kendo/browser/index.csr.html dist/yuei-kendo/browser/404.html && touch dist/yuei-kendo/browser/.nojekyll && gh-pages -d dist/yuei-kendo/browser -t true"
   },
   "private": true,
   "packageManager": "npm@10.9.8",
@@ -34,6 +35,7 @@
     "@types/express": "^5.0.1",
     "@types/node": "^20.17.19",
     "autoprefixer": "^10.5.2",
+    "gh-pages": "^6.3.0",
     "jsdom": "^28.0.0",
     "postcss": "^8.5.16",
     "prettier": "^3.8.1",
