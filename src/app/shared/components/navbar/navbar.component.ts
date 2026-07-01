@@ -1,6 +1,6 @@
 import { Component, HostListener, OnInit, PLATFORM_ID, inject, signal } from '@angular/core';
 import { isPlatformBrowser } from '@angular/common';
-import { NavigationEnd, Router, RouterLink, RouterLinkActive } from '@angular/router';
+import { NavigationEnd, Router, RouterLink } from '@angular/router';
 import { filter } from 'rxjs';
 import { LucideAngularModule, Menu, X, ChevronDown } from 'lucide-angular';
 import { TranslateService } from '../../../core/services/translate.service';
@@ -9,15 +9,20 @@ import { GOOGLE_FORM_URL } from '../../../core/constants';
 interface NavLink {
   key: string;
   path: string;
+  fragment?: string;
   external: boolean;
 }
 
 const SUPPORTED_LANGS = ['vi', 'en', 'ru', 'ja'];
+// id-шники секций на Главной, за которыми следит scroll-spy (те же, что fragment в links)
+const SCROLL_SPY_IDS = ['story', 'instructor'];
+// высота навбара + запас — та же величина, что scroll-mt-28 (7rem = 112px) у секций
+const SCROLL_SPY_OFFSET = 120;
 
 @Component({
   selector: 'app-navbar',
   standalone: true,
-  imports: [RouterLink, RouterLinkActive, LucideAngularModule],
+  imports: [RouterLink, LucideAngularModule],
   templateUrl: './navbar.component.html',
 })
 export class NavbarComponent implements OnInit {
@@ -29,6 +34,8 @@ export class NavbarComponent implements OnInit {
   isMenuOpen = signal(false);
   isLangOpen = signal(false);
   isScrolled = signal(false);
+  activeFragment = signal<string | null>(null);
+  private currentPath = signal<string>('');
 
   readonly MenuIcon = Menu;
   readonly XIcon = X;
@@ -36,7 +43,8 @@ export class NavbarComponent implements OnInit {
 
   readonly links: NavLink[] = [
     { key: 'nav.home', path: '', external: false },
-    { key: 'nav.about', path: 'about', external: false },
+    { key: 'nav.about', path: '', fragment: 'story', external: false },
+    { key: 'nav.sensei', path: '', fragment: 'instructor', external: false },
     { key: 'nav.faq', path: 'faq', external: false },
     { key: 'nav.register', path: GOOGLE_FORM_URL, external: true },
   ];
@@ -45,6 +53,7 @@ export class NavbarComponent implements OnInit {
   onScroll() {
     if (isPlatformBrowser(this.platformId)) {
       this.isScrolled.set(window.scrollY > 50);
+      this.updateActiveFragment();
     }
   }
 
@@ -56,18 +65,41 @@ export class NavbarComponent implements OnInit {
 
   ngOnInit() {
     this.updateLang(this.router.url);
+    this.updateActiveFragment();
 
     this.router.events.pipe(filter((e) => e instanceof NavigationEnd)).subscribe((e) => {
       this.updateLang((e as NavigationEnd).urlAfterRedirects);
+      this.updateActiveFragment();
       this.closeMenu();
     });
   }
 
   private updateLang(url: string) {
-    const segment = url.split('/')[1];
-    const lang = SUPPORTED_LANGS.includes(segment) ? segment : 'vi';
+    const clean = url.split('?')[0].split('#')[0];
+    const segments = clean.split('/').filter(Boolean);
+    const lang = SUPPORTED_LANGS.includes(segments[0]) ? segments[0] : 'vi';
     this.lang.set(lang);
     this.translate.load(lang);
+    this.currentPath.set(segments.slice(1).join('/'));
+  }
+
+  // Scroll-spy: находим последнюю секцию (по порядку на странице), верхняя граница
+  // которой уже выше линии SCROLL_SPY_OFFSET — она и есть "активная" в навбаре
+  private updateActiveFragment() {
+    if (!isPlatformBrowser(this.platformId)) return;
+    let current: string | null = null;
+    for (const id of SCROLL_SPY_IDS) {
+      const el = document.getElementById(id);
+      if (el && el.getBoundingClientRect().top <= SCROLL_SPY_OFFSET) {
+        current = id;
+      }
+    }
+    this.activeFragment.set(current);
+  }
+
+  isActive(link: NavLink): boolean {
+    if (link.external || this.currentPath() !== link.path) return false;
+    return link.fragment ? this.activeFragment() === link.fragment : this.activeFragment() === null;
   }
 
   buildLink(path: string): string[] {

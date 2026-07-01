@@ -19,8 +19,8 @@
             <li>
               <a
                 [routerLink]="buildLink(link.path)"
-                routerLinkActive="active"
-                [routerLinkActiveOptions]="{ exact: link.path === '' }"
+                [fragment]="link.fragment"
+                [class.active]="isActive(link)"
                 class="pb-1 transition-colors text-sm font-medium text-white [&.active]:border-b-2 [&.active]:border-primary [&.active]:text-primary"
               >
                 {{ translate.t(link.key) }}
@@ -108,8 +108,8 @@
               <li>
                 <a
                   [routerLink]="buildLink(link.path)"
-                  routerLinkActive="active"
-                  [routerLinkActiveOptions]="{ exact: link.path === '' }"
+                  [fragment]="link.fragment"
+                  [class.active]="isActive(link)"
                   (click)="closeMenu()"
                   class="block px-3 py-2 border-l-2 border-transparent transition-colors [&.active]:text-primary [&.active]:border-primary"
                 >

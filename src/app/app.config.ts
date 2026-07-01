@@ -11,7 +11,11 @@ export const appConfig: ApplicationConfig = {
     provideHttpClient(withFetch()),
     // withComponentInputBinding — позволяет получать route params напрямую через @Input()
     // Например: @Input() lang!: string; вместо inject(ActivatedRoute)
-    provideRouter(routes, withComponentInputBinding(), withInMemoryScrolling({ scrollPositionRestoration: 'top' })),
+    provideRouter(
+      routes,
+      withComponentInputBinding(),
+      withInMemoryScrolling({ scrollPositionRestoration: 'top', anchorScrolling: 'enabled' }),
+    ),
     // withEventReplay — запоминает события пользователя во время гидратации и воспроизводит их
     provideClientHydration(withEventReplay()),
   ],

@@ -13,6 +13,15 @@ export class HomeComponent {
 
   // Ключи 'about.*' переиспользуются намеренно — секция инструктора
   // отражает контент страницы About, отдельного дубля в i18n не заводим.
+  readonly gallery = [
+    'assets/img/gallery-1.jpg',
+    'assets/img/gallery-2.jpg',
+    'assets/img/gallery-3.jpg',
+    'assets/img/gallery-4.jpg',
+    'assets/img/gallery-5.jpg',
+    'assets/img/gallery-6.jpg',
+  ];
+
   readonly stats = [
     { key: 'about.stat_founded', value: '2019' },
     { key: 'about.stat_locations', value: '2' },
