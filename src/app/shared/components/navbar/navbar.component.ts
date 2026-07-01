@@ -43,8 +43,8 @@ export class NavbarComponent implements OnInit {
 
   readonly links: NavLink[] = [
     { key: 'nav.home', path: '', external: false },
-    { key: 'nav.about', path: '', fragment: 'story', external: false },
-    { key: 'nav.sensei', path: '', fragment: 'instructor', external: false },
+    { key: 'nav.about', path: '', fragment: 'about', external: false },
+    { key: 'nav.sensei', path: '', fragment: 'sensei', external: false },
     { key: 'nav.faq', path: 'faq', external: false },
     { key: 'nav.register', path: GOOGLE_FORM_URL, external: true },
   ];

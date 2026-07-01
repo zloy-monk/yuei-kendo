@@ -15,7 +15,7 @@
 <section class="bg-dark text-white py-20">
   <div class="container mx-auto px-6 max-w-3xl">
     @for (item of items; track item.q; let i = $index) {
-      <div class="border-b border-white/10">
+      <div [id]="'faq-item-' + i" class="scroll-mt-28 border-b border-white/10">
         <!-- Question row -->
         <button
           class="w-full flex items-center justify-between gap-4 py-5 text-left group"

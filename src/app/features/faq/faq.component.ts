@@ -1,4 +1,5 @@
-import { Component, inject, signal } from '@angular/core';
+import { Component, PLATFORM_ID, inject, signal } from '@angular/core';
+import { isPlatformBrowser } from '@angular/common';
 import { TranslateService } from '../../core/services/translate.service';
 import { LucideAngularModule, ChevronDown } from 'lucide-angular';
 
@@ -19,12 +20,22 @@ interface FaqItem {
 })
 export class FaqComponent {
   translate = inject(TranslateService);
+  private platformId = inject(PLATFORM_ID);
   readonly ChevronDownIcon = ChevronDown;
 
   openIndex = signal<number | null>(null);
 
   toggle(i: number) {
-    this.openIndex.set(this.openIndex() === i ? null : i);
+    const opening = this.openIndex() !== i;
+    this.openIndex.set(opening ? i : null);
+    if (opening && isPlatformBrowser(this.platformId)) {
+      // Схлопывание предыдущего открытого пункта меняет DOM синхронно после этого клика,
+      // но Angular перерисовывает разметку только в следующем тике — ждём его, иначе
+      // scrollIntoView считает позицию по старой высоте разметки.
+      setTimeout(() => {
+        document.getElementById('faq-item-' + i)?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      });
+    }
   }
 
   readonly items: FaqItem[] = [
