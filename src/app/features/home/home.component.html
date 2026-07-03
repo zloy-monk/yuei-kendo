@@ -47,24 +47,6 @@
   </div>
 </section>
 
-<!-- РАСПИСАНИЕ (тизер) — когда и где тренировки, чтобы не искать в футере -->
-<section class="bg-dark text-white py-16">
-  <div appReveal class="container mx-auto px-6">
-    <h2 class="text-2xl md:text-3xl font-bold text-center mb-10">
-      {{ translate.t('footer.schedule_title') }}
-    </h2>
-    <div class="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-4xl mx-auto">
-      @for (loc of schedule; track loc.name) {
-        <div class="rounded-2xl border border-white/10 bg-surface p-6 flex flex-col gap-2">
-          <p class="font-semibold text-primary">{{ loc.name }}</p>
-          <p class="text-white/80 text-sm">{{ translate.t(loc.hoursKey) }}</p>
-          <p class="text-white/50 text-sm">{{ translate.t(loc.addressKey) }}</p>
-        </div>
-      }
-    </div>
-  </div>
-</section>
-
 <!-- ИСТОРИЯ КЛУБА -->
 <section id="about" class="scroll-mt-28 bg-dark text-white py-20">
   <div appReveal class="container mx-auto px-6">
@@ -154,6 +136,24 @@
           }
         </div>
       </div>
+    </div>
+  </div>
+</section>
+
+<!-- РАСПИСАНИЕ (тизер) — когда и где тренировки, чтобы не искать в футере -->
+<section class="relative overflow-hidden bg-surface bg-logo-pattern py-12">
+  <div appReveal class="relative z-10 container mx-auto px-6">
+    <h2 class="text-2xl text-white md:text-3xl font-bold text-center mb-10">
+      {{ translate.t('footer.schedule_title') }}
+    </h2>
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-4xl mx-auto">
+      @for (loc of schedule; track loc.name) {
+        <div class="rounded-2xl border border-white/10 bg-surface p-6 flex flex-col gap-2">
+          <p class="font-semibold text-primary">{{ loc.name }}</p>
+          <p class="text-white/80 text-sm">{{ translate.t(loc.hoursKey) }}</p>
+          <p class="text-white/50 text-sm">{{ translate.t(loc.addressKey) }}</p>
+        </div>
+      }
     </div>
   </div>
 </section>
