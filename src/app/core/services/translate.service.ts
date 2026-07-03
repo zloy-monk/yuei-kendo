@@ -14,9 +14,13 @@ const DICTIONARY: Record<string, Translations> = { vi, en, ru, ja };
 export class TranslateService {
   private translations = signal<Translations>(vi);
 
+  // Текущий язык — реактивный сигнал (нужен SEO и любым подписчикам)
+  readonly lang = signal<string>('vi');
+
   // Викликається при зміні мови — просто міняємо сигнал
   load(lang: string): void {
     this.translations.set(DICTIONARY[lang] ?? vi);
+    this.lang.set(DICTIONARY[lang] ? lang : 'vi');
   }
 
   // t('nav.home') → 'Trang chủ'
@@ -27,9 +31,6 @@ export class TranslateService {
 
   // Сигнал для реактивного використання всередині computed()
   select(key: string): Signal<string> {
-    return computed(() => {
-      const [section, field] = key.split('.');
-      return this.translations()[section]?.[field] ?? key;
-    });
+    return computed(() => this.t(key));
   }
 }

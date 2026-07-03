@@ -1,5 +1,4 @@
 import { Component, inject } from '@angular/core';
-import { RouterLink } from '@angular/router';
 import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
 import {
   LucideAngularModule,
@@ -15,7 +14,7 @@ import { TranslateService } from '../../../core/services/translate.service';
 @Component({
   selector: 'app-footer',
   standalone: true,
-  imports: [RouterLink, LucideAngularModule],
+  imports: [LucideAngularModule],
   templateUrl: './footer.component.html',
 })
 export class FooterComponent {
@@ -24,18 +23,16 @@ export class FooterComponent {
 
   readonly currentYear = new Date().getFullYear();
 
-  readonly FacebookIcon = Facebook;
-  readonly InstagramIcon = Instagram;
-  readonly YoutubeIcon = Youtube;
   readonly PhoneIcon = Phone;
   readonly MapPinIcon = MapPin;
   readonly ClockIcon = Clock;
 
+  // icon: null → TikTok, у него нет иконки в Lucide, в шаблоне inline SVG
   readonly socials = [
-    { icon: 'facebook', href: 'https://facebook.com/yueikendo', label: 'Facebook' },
-    { icon: 'instagram', href: 'https://instagram.com/yueikendo', label: 'Instagram' },
-    { icon: 'youtube', href: 'https://youtube.com/@yueikendo', label: 'YouTube' },
-    { icon: 'tiktok', href: 'https://tiktok.com/@yueikendo', label: 'TikTok' },
+    { icon: Facebook, href: 'https://facebook.com/yueikendo', label: 'Facebook' },
+    { icon: Instagram, href: 'https://instagram.com/yueikendo', label: 'Instagram' },
+    { icon: Youtube, href: 'https://youtube.com/@yueikendo', label: 'YouTube' },
+    { icon: null, href: 'https://tiktok.com/@yueikendo', label: 'TikTok' },
   ];
 
   // TODO: вставить реальные embed URL из Google Maps (Поделиться → Встроить карту → src="...")

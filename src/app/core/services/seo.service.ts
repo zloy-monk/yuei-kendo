@@ -1,6 +1,7 @@
 import { DOCUMENT } from '@angular/common';
 import { Injectable, inject } from '@angular/core';
 import { Meta, Title } from '@angular/platform-browser';
+import { SITE_URL, SUPPORTED_LANGS } from '../constants';
 
 export interface SeoConfig {
   title: string;
@@ -12,8 +13,6 @@ export interface SeoConfig {
 }
 
 const SITE_NAME = 'YUEI KENDO';
-const SITE_URL = 'https://yueikendo.com';
-const LANGS = ['vi', 'en', 'ru', 'ja'];
 
 @Injectable({ providedIn: 'root' })
 export class SeoService {
@@ -63,7 +62,7 @@ export class SeoService {
     this.appendLink({ rel: 'canonical', href: canonical });
 
     // hreflang для каждого языка
-    LANGS.forEach(lang => {
+    SUPPORTED_LANGS.forEach(lang => {
       this.appendLink({
         rel: 'alternate',
         hreflang: lang,

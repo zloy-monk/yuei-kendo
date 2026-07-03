@@ -1,0 +1,45 @@
+@for (item of items(); track item.q; let i = $index) {
+  <div [id]="idPrefix() + '-' + i" class="scroll-mt-28 border-b border-white/10">
+    <!-- Вопрос -->
+    <button
+      class="w-full flex items-center justify-between gap-4 py-5 text-left group cursor-pointer"
+      (click)="toggle(i)"
+    >
+      <span
+        class="text-base md:text-lg font-medium group-hover:text-primary transition-colors duration-200"
+        [class.text-primary]="openIndex() === i"
+      >
+        {{ i + 1 }}. {{ translate.t(item.q) }}
+      </span>
+      <lucide-icon
+        [img]="ChevronDownIcon"
+        [size]="20"
+        class="shrink-0 text-primary transition-transform duration-300"
+        [class.rotate-180]="openIndex() === i"
+      />
+    </button>
+
+    <!-- Ответ -->
+    @if (openIndex() === i) {
+      <div class="pb-6 flex flex-col gap-3">
+        @for (seg of item.segments; track $index) {
+          @switch (seg.type) {
+            @case ('p') {
+              <p class="text-white/70 leading-relaxed">{{ translate.t(seg.key) }}</p>
+            }
+            @case ('ul') {
+              <ul class="flex flex-col gap-2 pl-1">
+                @for (k of seg.keys; track k) {
+                  <li class="flex items-start gap-3">
+                    <span class="mt-2 w-1.5 h-1.5 rounded-full bg-primary shrink-0"></span>
+                    <span class="text-white/70 leading-relaxed">{{ translate.t(k) }}</span>
+                  </li>
+                }
+              </ul>
+            }
+          }
+        }
+      </div>
+    }
+  </div>
+}

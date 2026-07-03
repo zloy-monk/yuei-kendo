@@ -1,7 +1,7 @@
 import { RenderMode, ServerRoute } from '@angular/ssr';
+import { SUPPORTED_LANGS } from './core/constants';
 
-const LANGS = ['vi', 'en', 'ru', 'ja'];
-const langParams = async () => LANGS.map((lang) => ({ lang }));
+const langParams = async () => SUPPORTED_LANGS.map((lang) => ({ lang }));
 
 export const serverRoutes: ServerRoute[] = [
   // Корень и wildcard — Client (редирект на /vi выполняет Angular Router в браузере,

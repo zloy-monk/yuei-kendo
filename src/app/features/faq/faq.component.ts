@@ -1,98 +1,56 @@
-import { Component, PLATFORM_ID, inject, signal } from '@angular/core';
-import { isPlatformBrowser } from '@angular/common';
+import { Component, effect, inject } from '@angular/core';
 import { TranslateService } from '../../core/services/translate.service';
-import { LucideAngularModule, ChevronDown } from 'lucide-angular';
-
-type FaqSegment =
-  | { type: 'p';  key: string }
-  | { type: 'ul'; keys: string[] };
-
-interface FaqItem {
-  q: string;
-  segments: FaqSegment[];
-}
+import { SeoService } from '../../core/services/seo.service';
+import { GOOGLE_FORM_URL, SITE_URL } from '../../core/constants';
+import { FAQ_ITEMS } from '../../core/faq-data';
+import { FaqAccordionComponent } from '../../shared/components/faq-accordion/faq-accordion.component';
 
 @Component({
   selector: 'app-faq',
   standalone: true,
-  imports: [LucideAngularModule],
+  imports: [FaqAccordionComponent],
   templateUrl: './faq.component.html',
 })
 export class FaqComponent {
   translate = inject(TranslateService);
-  private platformId = inject(PLATFORM_ID);
-  readonly ChevronDownIcon = ChevronDown;
+  private seo = inject(SeoService);
 
-  openIndex = signal<number | null>(null);
+  readonly formUrl = GOOGLE_FORM_URL;
+  readonly items = FAQ_ITEMS;
 
-  toggle(i: number) {
-    const opening = this.openIndex() !== i;
-    this.openIndex.set(opening ? i : null);
-    if (opening && isPlatformBrowser(this.platformId)) {
-      // Схлопывание предыдущего открытого пункта меняет DOM синхронно после этого клика,
-      // но Angular перерисовывает разметку только в следующем тике — ждём его, иначе
-      // scrollIntoView считает позицию по старой высоте разметки.
-      setTimeout(() => {
-        document.getElementById('faq-item-' + i)?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  constructor() {
+    // effect — SEO-теги обновляются и при смене языка (роут остаётся тем же компонентом)
+    effect(() => {
+      const lang = this.translate.lang();
+      this.seo.setPage({
+        title: this.translate.t('faq.seo_title'),
+        description: this.translate.t('faq.seo_desc'),
+        canonical: `${SITE_URL}/${lang}/faq`,
+        lang,
+        jsonLd: this.buildFaqJsonLd(),
       });
-    }
+    });
   }
 
-  readonly items: FaqItem[] = [
-    {
-      q: 'faq.q1',
-      segments: [
-        { type: 'p', key: 'faq.a1_p1' },
-        { type: 'p', key: 'faq.a1_p2' },
-      ],
-    },
-    {
-      q: 'faq.q2',
-      segments: [
-        { type: 'p', key: 'faq.a2_intro' },
-        { type: 'ul', keys: ['faq.a2_b1', 'faq.a2_b2', 'faq.a2_b3', 'faq.a2_b4', 'faq.a2_b5', 'faq.a2_b6', 'faq.a2_b7'] },
-      ],
-    },
-    {
-      q: 'faq.q3',
-      segments: [{ type: 'p', key: 'faq.a3_p1' }],
-    },
-    {
-      q: 'faq.q4',
-      segments: [
-        { type: 'p', key: 'faq.a4_intro' },
-        { type: 'ul', keys: ['faq.a4_b1', 'faq.a4_b2', 'faq.a4_b3', 'faq.a4_b4', 'faq.a4_b5', 'faq.a4_b6'] },
-      ],
-    },
-    {
-      q: 'faq.q5',
-      segments: [{ type: 'p', key: 'faq.a5_p1' }],
-    },
-    {
-      q: 'faq.q6',
-      segments: [{ type: 'p', key: 'faq.a6_p1' }],
-    },
-    {
-      q: 'faq.q7',
-      segments: [
-        { type: 'p', key: 'faq.a7_p1' },
-        { type: 'p', key: 'faq.a7_p2' },
-      ],
-    },
-    {
-      q: 'faq.q8',
-      segments: [
-        { type: 'p', key: 'faq.a8_intro' },
-        { type: 'ul', keys: ['faq.a8_b1', 'faq.a8_b2', 'faq.a8_b3', 'faq.a8_b4'] },
-      ],
-    },
-    {
-      q: 'faq.q9',
-      segments: [{ type: 'p', key: 'faq.a9_p1' }],
-    },
-    {
-      q: 'faq.q10',
-      segments: [{ type: 'p', key: 'faq.a10_p1' }],
-    },
-  ];
+  // FAQPage schema — rich snippets в Google (вопросы прямо в выдаче)
+  private buildFaqJsonLd(): object {
+    return {
+      '@context': 'https://schema.org',
+      '@type': 'FAQPage',
+      mainEntity: this.items.map((item) => ({
+        '@type': 'Question',
+        name: this.translate.t(item.q),
+        acceptedAnswer: {
+          '@type': 'Answer',
+          text: item.segments
+            .map((seg) =>
+              seg.type === 'p'
+                ? this.translate.t(seg.key)
+                : seg.keys.map((k) => this.translate.t(k)).join(' '),
+            )
+            .join(' '),
+        },
+      })),
+    };
+  }
 }

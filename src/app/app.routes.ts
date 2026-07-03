@@ -1,7 +1,6 @@
 import { inject } from '@angular/core';
 import { ActivatedRouteSnapshot, RedirectCommand, Router, Routes } from '@angular/router';
-
-const SUPPORTED_LANGS = ['vi', 'en', 'ru', 'ja'];
+import { SUPPORTED_LANGS } from './core/constants';
 
 // Функциональный гард — проверяет что :lang поддерживается
 // Если нет — редиректит на /vi/

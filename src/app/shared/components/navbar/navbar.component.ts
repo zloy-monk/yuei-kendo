@@ -4,7 +4,7 @@ import { NavigationEnd, Router, RouterLink } from '@angular/router';
 import { filter } from 'rxjs';
 import { LucideAngularModule, Menu, X, ChevronDown } from 'lucide-angular';
 import { TranslateService } from '../../../core/services/translate.service';
-import { GOOGLE_FORM_URL } from '../../../core/constants';
+import { GOOGLE_FORM_URL, SUPPORTED_LANGS } from '../../../core/constants';
 
 interface NavLink {
   key: string;
@@ -12,10 +12,8 @@ interface NavLink {
   fragment?: string;
   external: boolean;
 }
-
-const SUPPORTED_LANGS = ['vi', 'en', 'ru', 'ja'];
 // id-шники секций на Главной, за которыми следит scroll-spy (те же, что fragment в links)
-const SCROLL_SPY_IDS = ['about', 'sensei'];
+const SCROLL_SPY_IDS = ['about', 'sensei', 'faq'];
 // высота навбара + запас — та же величина, что scroll-mt-28 (7rem = 112px) у секций
 const SCROLL_SPY_OFFSET = 120;
 
@@ -41,20 +39,29 @@ export class NavbarComponent implements OnInit {
   readonly XIcon = X;
   readonly ChevronDownIcon = ChevronDown;
 
+  readonly langs = SUPPORTED_LANGS;
+
   readonly links: NavLink[] = [
     { key: 'nav.home', path: '', external: false },
     { key: 'nav.about', path: '', fragment: 'about', external: false },
     { key: 'nav.sensei', path: '', fragment: 'sensei', external: false },
-    { key: 'nav.faq', path: 'faq', external: false },
+    { key: 'nav.faq', path: '', fragment: 'faq', external: false },
     { key: 'nav.register', path: GOOGLE_FORM_URL, external: true },
   ];
 
+  // rAF-throttle: scroll-события летят десятками в секунду, а getBoundingClientRect
+  // форсирует reflow — считаем не чаще одного раза на кадр
+  private scrollTicking = false;
+
   @HostListener('window:scroll')
   onScroll() {
-    if (isPlatformBrowser(this.platformId)) {
+    if (!isPlatformBrowser(this.platformId) || this.scrollTicking) return;
+    this.scrollTicking = true;
+    requestAnimationFrame(() => {
       this.isScrolled.set(window.scrollY > 50);
       this.updateActiveFragment();
-    }
+      this.scrollTicking = false;
+    });
   }
 
   @HostListener('document:keydown.escape')
