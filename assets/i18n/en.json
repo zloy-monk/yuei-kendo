@@ -13,7 +13,10 @@
     "hero_cta": "Join a Trial Class",
     "trial_title": "Want to give it a try?",
     "trial_text": "We offer 2 completely free trial sessions for newcomers. Spots fill up fast every week — register today to save yours!",
-    "trial_cta": "Sign Up Now"
+    "trial_cta": "Sign Up Now",
+    "seo_title": "Kendo Club in Hanoi — 2 Free Trial Sessions",
+    "seo_desc": "Yuei Kendo Community — Japanese kendo club in Hanoi since 2019. 5th dan sensei, 2 training locations, 2 free trial sessions for beginners. Sign up now!",
+    "faq_all": "View all questions"
   },
   "about": {
     "title": "About Us",
@@ -29,7 +32,13 @@
     "instructor_competitions": "Participated in national and international competitions",
     "gallery_title": "Our Team",
     "story_title_pre": "About ",
-    "story_title_post": " Kendo Community"
+    "story_title_post": " Kendo Community",
+    "gallery_alt_1": "Group kendo training at Yuei Kendo club in Hanoi",
+    "gallery_alt_2": "Yuei Kendo members receiving tournament awards",
+    "gallery_alt_3": "Kendo match at the Yuei Kendo dojo",
+    "gallery_alt_4": "Kendo technique practice in bogu armor",
+    "gallery_alt_5": "Yuei Kendo team at a Vietnam kendo tournament",
+    "gallery_alt_6": "Yuei member competing in a kendo match"
   },
   "footer": {
     "about": "Japanese kendo club in Hanoi. Founded in 2019, led by a 5th dan instructor.",
@@ -83,6 +92,8 @@
     "q9": "What are the membership fees?",
     "a9_p1": "You can choose to pay 500,000 VND per month or 1,500,000 – 2,000,000 VND per quarter, depending on the number of sessions you register for.",
     "q10": "Where can I ask other questions?",
-    "a10_p1": "For any other questions, feel free to message or leave a comment on our social media channels — we will get back to you as soon as possible."
+    "a10_p1": "For any other questions, feel free to message or leave a comment on our social media channels — we will get back to you as soon as possible.",
+    "seo_title": "FAQ — fees, schedule, trial sessions",
+    "seo_desc": "Everything about kendo in Hanoi: what kendo is, who can practice, membership fees, what to bring, and how to sign up for 2 free trial sessions at Yuei Kendo Community."
   }
 }

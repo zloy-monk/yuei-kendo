@@ -13,7 +13,10 @@
     "hero_cta": "Đăng ký tập thử",
     "trial_title": "Bạn muốn thử sức?",
     "trial_text": "Chúng tôi có 2 buổi tập thử hoàn toàn miễn phí dành cho người mới. Số lượng chỗ tập có hạn mỗi tuần — đăng ký ngay hôm nay để giữ chỗ của bạn!",
-    "trial_cta": "Đăng ký ngay"
+    "trial_cta": "Đăng ký ngay",
+    "seo_title": "Câu lạc bộ Kendo tại Hà Nội — 2 buổi tập thử miễn phí",
+    "seo_desc": "Yuei Kendo Community — câu lạc bộ kiếm đạo Nhật Bản tại Hà Nội từ 2019. Sensei 5 đẳng, 2 địa điểm tập, 2 buổi tập thử miễn phí cho người mới. Đăng ký ngay!",
+    "faq_all": "Xem tất cả câu hỏi"
   },
   "about": {
     "title": "Giới thiệu",
@@ -29,7 +32,13 @@
     "instructor_competitions": "Đã tham dự nhiều giải đấu trong nước và quốc tế",
     "gallery_title": "Đội của chúng tôi",
     "story_title_pre": "Giới thiệu về ",
-    "story_title_post": " Kendo Community"
+    "story_title_post": " Kendo Community",
+    "gallery_alt_1": "Buổi tập kendo cùng nhau tại câu lạc bộ Yuei Kendo Hà Nội",
+    "gallery_alt_2": "Thành viên Yuei Kendo nhận giải thưởng tại giải đấu",
+    "gallery_alt_3": "Trận đấu kendo tại võ đường Yuei Kendo",
+    "gallery_alt_4": "Luyện tập kỹ thuật kendo với giáp bogu",
+    "gallery_alt_5": "Đội Yuei Kendo tại giải đấu kendo Việt Nam",
+    "gallery_alt_6": "Khoảnh khắc thi đấu kendo của thành viên Yuei"
   },
   "footer": {
     "about": "Câu lạc bộ kiếm đạo Nhật Bản tại Hà Nội. Thành lập năm 2019, sensei đẳng cấp 5.",
@@ -83,6 +92,8 @@
     "q9": "Hội phí là bao nhiêu?",
     "a9_p1": "Bạn có thể chọn đóng 500.000 VNĐ/tháng hoặc 1.500.000 – 2.000.000 VNĐ/quý tùy theo số buổi tập bạn đăng ký.",
     "q10": "Tôi còn câu hỏi khác thì hỏi ở đâu?",
-    "a10_p1": "Nếu bạn còn có bất kỳ câu hỏi nào khác, hãy nhắn tin hoặc bình luận trên các kênh mạng xã hội của chúng tôi — chúng tôi sẽ phản hồi sớm nhất có thể."
+    "a10_p1": "Nếu bạn còn có bất kỳ câu hỏi nào khác, hãy nhắn tin hoặc bình luận trên các kênh mạng xã hội của chúng tôi — chúng tôi sẽ phản hồi sớm nhất có thể.",
+    "seo_title": "Câu hỏi thường gặp — học phí, lịch tập, tập thử",
+    "seo_desc": "Giải đáp về kendo tại Hà Nội: kendo là gì, ai có thể tập, học phí bao nhiêu, cần chuẩn bị gì và cách đăng ký 2 buổi tập thử miễn phí tại Yuei Kendo Community."
   }
 }
