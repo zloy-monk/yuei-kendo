@@ -37,8 +37,10 @@
     <div class="grid grid-cols-2 md:grid-cols-4 gap-6">
       @for (stat of stats; track stat.key) {
         <div class="flex flex-col items-center gap-1 text-center">
-          <span appCountUp class="text-4xl font-bold text-primary">{{ stat.value }}</span>
-          <span class="text-sm text-white/60 uppercase tracking-widest">
+          <span appCountUp class="float-text-shadow text-4xl font-bold text-primary">{{
+            stat.value
+          }}</span>
+          <span class="float-text-shadow text-sm text-white/60 uppercase tracking-widest">
             {{ translate.t(stat.key) }}
           </span>
         </div>
@@ -80,12 +82,12 @@
 <!-- ГАЛЕРЕЯ -->
 <section class="relative overflow-hidden bg-surface bg-logo-pattern py-20">
   <div appReveal class="relative z-10 container mx-auto px-6">
-    <h2 class="text-2xl md:text-3xl font-bold text-white text-center mb-10">
+    <h2 class="float-text-shadow text-2xl md:text-3xl font-bold text-white text-center mb-10">
       {{ translate.t('about.gallery_title') }}
     </h2>
     <div class="grid grid-cols-2 md:grid-cols-3 gap-3">
       @for (img of gallery; track img.src) {
-        <div class="aspect-square rounded-xl overflow-hidden">
+        <div class="float-shadow aspect-square rounded-xl overflow-hidden">
           <img
             [src]="img.src"
             [alt]="translate.t(img.altKey)"
@@ -143,12 +145,14 @@
 <!-- РАСПИСАНИЕ (тизер) — когда и где тренировки, чтобы не искать в футере -->
 <section class="relative overflow-hidden bg-surface bg-logo-pattern py-12">
   <div appReveal class="relative z-10 container mx-auto px-6">
-    <h2 class="text-2xl text-white md:text-3xl font-bold text-center mb-10">
+    <h2 class="float-text-shadow text-2xl text-white md:text-3xl font-bold text-center mb-10">
       {{ translate.t('footer.schedule_title') }}
     </h2>
     <div class="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-4xl mx-auto">
       @for (loc of schedule; track loc.name) {
-        <div class="rounded-2xl border border-white/10 bg-surface p-6 flex flex-col gap-2">
+        <div
+          class="float-shadow rounded-2xl border border-white/10 bg-surface p-6 flex flex-col gap-2"
+        >
           <p class="font-semibold text-primary">{{ loc.name }}</p>
           <p class="text-white/80 text-sm">{{ translate.t(loc.hoursKey) }}</p>
           <p class="text-white/50 text-sm">{{ translate.t(loc.addressKey) }}</p>
@@ -177,21 +181,4 @@
 </section>
 
 <!-- ПРОБНОЕ -->
-<section class="relative overflow-hidden bg-surface bg-logo-pattern py-16">
-  <div appReveal class="relative z-10 container mx-auto px-6 max-w-xl text-center">
-    <h2 class="text-2xl md:text-3xl font-bold text-white mb-3">
-      {{ translate.t('home.trial_title') }}
-    </h2>
-    <p class="text-white/70 leading-relaxed mb-8">
-      {{ translate.t('home.trial_text') }}
-    </p>
-    <a
-      [href]="formUrl"
-      target="_blank"
-      rel="noopener noreferrer"
-      class="inline-block px-8 py-3.5 text-base rounded-full bg-primary text-white font-semibold tracking-wide transition-opacity hover:opacity-90 md:text-lg"
-    >
-      {{ translate.t('home.trial_cta') }}
-    </a>
-  </div>
-</section>
+<app-trial-cta />

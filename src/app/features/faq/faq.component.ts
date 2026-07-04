@@ -1,21 +1,21 @@
 import { Component, effect, inject } from '@angular/core';
 import { TranslateService } from '../../core/services/translate.service';
 import { SeoService } from '../../core/services/seo.service';
-import { GOOGLE_FORM_URL, SITE_URL } from '../../core/constants';
+import { SITE_URL } from '../../core/constants';
 import { FAQ_ITEMS } from '../../core/faq-data';
 import { FaqAccordionComponent } from '../../shared/components/faq-accordion/faq-accordion.component';
+import { TrialCtaComponent } from '../../shared/components/trial-cta/trial-cta.component';
 
 @Component({
   selector: 'app-faq',
   standalone: true,
-  imports: [FaqAccordionComponent],
+  imports: [FaqAccordionComponent, TrialCtaComponent],
   templateUrl: './faq.component.html',
 })
 export class FaqComponent {
   translate = inject(TranslateService);
   private seo = inject(SeoService);
 
-  readonly formUrl = GOOGLE_FORM_URL;
   readonly items = FAQ_ITEMS;
 
   constructor() {

@@ -5,13 +5,14 @@ import { SeoService } from '../../core/services/seo.service';
 import { GOOGLE_FORM_URL, SITE_URL } from '../../core/constants';
 import { FAQ_TEASER_ITEMS } from '../../core/faq-data';
 import { FaqAccordionComponent } from '../../shared/components/faq-accordion/faq-accordion.component';
+import { TrialCtaComponent } from '../../shared/components/trial-cta/trial-cta.component';
 import { RevealDirective } from '../../shared/directives/reveal.directive';
 import { CountUpDirective } from '../../shared/directives/count-up.directive';
 
 @Component({
   selector: 'app-home',
   standalone: true,
-  imports: [RouterLink, FaqAccordionComponent, RevealDirective, CountUpDirective],
+  imports: [RouterLink, FaqAccordionComponent, TrialCtaComponent, RevealDirective, CountUpDirective],
   templateUrl: './home.component.html',
 })
 export class HomeComponent {

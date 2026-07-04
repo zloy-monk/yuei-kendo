@@ -40,6 +40,16 @@ html {
   }
 }
 
+/* «Парящая» тень для элементов поверх лого-паттерна — та же эстетика,
+   что у навбара при скролле */
+.float-shadow {
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.7);
+}
+
+.float-text-shadow {
+  text-shadow: 0 8px 5px rgba(0, 0, 0, 0.7);
+}
+
 .bg-logo-pattern {
   position: relative;
   /* Обрезает fixed-псевдоэлемент по границам секции: секция — «окно»
