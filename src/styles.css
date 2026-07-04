@@ -42,10 +42,16 @@ html {
 
 .bg-logo-pattern {
   position: relative;
+  /* Обрезает fixed-псевдоэлемент по границам секции: секция — «окно»
+     в неподвижный фон. clip-path (в отличие от transform/filter)
+     не создаёт containing block, поэтому position: fixed не ломается. */
+  clip-path: inset(0);
 }
 .bg-logo-pattern::before {
   content: '';
-  position: absolute;
+  /* fixed — паттерн прибит к viewport и не движется при скролле,
+     контент секций скользит поверх него */
+  position: fixed;
   top: 50%;
   left: 50%;
   width: 200vmax;

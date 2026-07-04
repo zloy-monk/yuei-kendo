@@ -32,7 +32,7 @@ export class FooterComponent {
     { icon: Facebook, href: 'https://facebook.com/yueikendo', label: 'Facebook' },
     { icon: Instagram, href: 'https://instagram.com/yueikendo', label: 'Instagram' },
     { icon: Youtube, href: 'https://youtube.com/@yueikendo', label: 'YouTube' },
-    { icon: null, href: 'https://tiktok.com/@yueikendo', label: 'TikTok' },
+    { icon: null, href: 'https://tiktok.com/@ditapkendokhong', label: 'TikTok' },
   ];
 
   // TODO: вставить реальные embed URL из Google Maps (Поделиться → Встроить карту → src="...")

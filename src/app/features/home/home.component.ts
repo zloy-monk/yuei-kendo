@@ -49,7 +49,7 @@ export class HomeComponent {
 
   readonly instructor = {
     photo: 'assets/img/instructor.png',
-    name: 'Nguyễn Mạnh Hưng',
+    nameKey: 'about.instructor_name',
     dan: '5段 (Godan)',
     credKeys: [
       'about.instructor_kendo',

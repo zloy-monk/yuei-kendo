@@ -6,7 +6,7 @@
   <div class="relative z-10 w-full px-8 md:px-16 lg:px-24">
     <div class="max-w-xl">
       <h1 class="text-4xl md:text-5xl lg:text-6xl font-bold text-white leading-tight mb-6">
-        <span class="text-primary">Yuei</span> Kendo<br />Community
+        <span class="text-primary">Yuei</span> Kendo<br /><span class="italic">Community</span>
       </h1>
 
       <p
@@ -112,7 +112,7 @@
         <!-- Фото: верх свободный (вылезает над лого), низ на одном уровне с лого, ширина не выходит за лого -->
         <img
           [src]="instructor.photo"
-          [alt]="instructor.name"
+          [alt]="translate.t(instructor.nameKey)"
           class="absolute bottom-0 left-1/2 -translate-x-1/2 w-[70%] h-[90%] object-cover object-top rounded-b-full"
         />
       </div>
@@ -123,7 +123,7 @@
           <p class="text-sm uppercase tracking-widest text-primary mb-1">
             {{ translate.t('about.instructor_label') }}
           </p>
-          <h2 class="text-3xl font-bold">{{ instructor.name }}</h2>
+          <h2 class="text-3xl font-bold">{{ translate.t(instructor.nameKey) }}</h2>
           <p class="text-white/50 mt-1">{{ instructor.dan }}</p>
         </div>
 
