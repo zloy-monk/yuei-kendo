@@ -39,7 +39,7 @@ export class FooterComponent {
     { icon: null, href: '#', label: 'TikTok' },
   ];
 
-  // TODO: вставить реальные embed URL из Google Maps (Поделиться → Встроить карту → src="...")
+  // Embed-карты Google Maps двух залов (Поделиться → Встроить карту → src)
   readonly locations: { name: string; mapSrc: SafeResourceUrl | ''; mapLink: string }[] = [
     {
       name: 'Yuei Đống Đa',

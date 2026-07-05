@@ -1,6 +1,6 @@
 import { Injectable, Signal, computed, signal } from '@angular/core';
 
-// Статичні імпорти — немає HTTP-запитів, працює однаково і на сервері і на клієнті
+// Статичные импорты — без HTTP-запросов, работает одинаково на сервере и клиенте
 import vi from '../../../assets/i18n/vi.json';
 import en from '../../../assets/i18n/en.json';
 import ru from '../../../assets/i18n/ru.json';
@@ -17,7 +17,7 @@ export class TranslateService {
   // Текущий язык — реактивный сигнал (нужен SEO и любым подписчикам)
   readonly lang = signal<string>('vi');
 
-  // Викликається при зміні мови — просто міняємо сигнал
+  // Вызывается при смене языка — просто меняем сигнал
   load(lang: string): void {
     this.translations.set(DICTIONARY[lang] ?? vi);
     this.lang.set(DICTIONARY[lang] ? lang : 'vi');
@@ -29,7 +29,7 @@ export class TranslateService {
     return this.translations()[section]?.[field] ?? key;
   }
 
-  // Сигнал для реактивного використання всередині computed()
+  // Сигнал для реактивного использования внутри computed()
   select(key: string): Signal<string> {
     return computed(() => this.t(key));
   }

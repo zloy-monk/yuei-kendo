@@ -55,8 +55,10 @@ export class SeoService {
     this.document.querySelectorAll('link[rel="canonical"], link[rel="alternate"]').forEach(el => el.remove());
 
     // Получаем базовый путь страницы без языкового префикса
-    // Например: /vi/blog → /blog
-    const path = canonical.replace(SITE_URL, '').replace(`/${currentLang}`, '') || '/';
+    // Например: /vi/faq → /faq. Якорь ^ + (?=/|$) — режем только префикс-сегмент,
+    // а не первое совпадение подстроки где-нибудь в середине пути
+    const path =
+      canonical.replace(SITE_URL, '').replace(new RegExp(`^/${currentLang}(?=/|$)`), '') || '/';
 
     // canonical — говорим гуглу какой URL считать основным
     this.appendLink({ rel: 'canonical', href: canonical });
