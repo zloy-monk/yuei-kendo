@@ -13,7 +13,7 @@ interface NavLink {
   external: boolean;
 }
 // id-шники секций на Главной, за которыми следит scroll-spy (те же, что fragment в links)
-const SCROLL_SPY_IDS = ['about', 'sensei', 'faq'];
+const SCROLL_SPY_IDS = ['about', 'sensei', 'schedule', 'faq'];
 // высота навбара + запас — та же величина, что scroll-mt-28 (7rem = 112px) у секций
 const SCROLL_SPY_OFFSET = 120;
 
@@ -45,6 +45,7 @@ export class NavbarComponent implements OnInit {
     { key: 'nav.home', path: '', external: false },
     { key: 'nav.about', path: '', fragment: 'about', external: false },
     { key: 'nav.sensei', path: '', fragment: 'sensei', external: false },
+    { key: 'nav.schedule', path: '', fragment: 'schedule', external: false },
     { key: 'nav.faq', path: '', fragment: 'faq', external: false },
     { key: 'nav.register', path: GOOGLE_FORM_URL, external: true },
   ];

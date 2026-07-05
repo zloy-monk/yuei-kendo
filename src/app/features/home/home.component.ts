@@ -12,7 +12,13 @@ import { CountUpDirective } from '../../shared/directives/count-up.directive';
 @Component({
   selector: 'app-home',
   standalone: true,
-  imports: [RouterLink, FaqAccordionComponent, TrialCtaComponent, RevealDirective, CountUpDirective],
+  imports: [
+    RouterLink,
+    FaqAccordionComponent,
+    TrialCtaComponent,
+    RevealDirective,
+    CountUpDirective,
+  ],
   templateUrl: './home.component.html',
 })
 export class HomeComponent {
@@ -26,12 +32,12 @@ export class HomeComponent {
   // Ключи 'about.*' переиспользуются намеренно — секция инструктора
   // отражает контент страницы About, отдельного дубля в i18n не заводим.
   readonly gallery = [
-    { src: 'assets/img/gallery-1.jpg', altKey: 'about.gallery_alt_1' },
-    { src: 'assets/img/gallery-2.jpg', altKey: 'about.gallery_alt_2' },
-    { src: 'assets/img/gallery-3.jpg', altKey: 'about.gallery_alt_3' },
-    { src: 'assets/img/gallery-4.jpg', altKey: 'about.gallery_alt_4' },
-    { src: 'assets/img/gallery-5.jpg', altKey: 'about.gallery_alt_5' },
-    { src: 'assets/img/gallery-6.jpg', altKey: 'about.gallery_alt_6' },
+    { src: 'assets/img/gallery-1.avif', altKey: 'about.gallery_alt_1' },
+    { src: 'assets/img/gallery-2.avif', altKey: 'about.gallery_alt_2' },
+    { src: 'assets/img/gallery-3.avif', altKey: 'about.gallery_alt_3' },
+    { src: 'assets/img/gallery-4.avif', altKey: 'about.gallery_alt_4' },
+    { src: 'assets/img/gallery-5.avif', altKey: 'about.gallery_alt_5' },
+    { src: 'assets/img/gallery-6.avif', altKey: 'about.gallery_alt_6' },
   ];
 
   readonly stats = [
@@ -44,12 +50,16 @@ export class HomeComponent {
   // Тизер расписания — те же i18n-ключи, что и в футере (DRY)
   readonly schedule = [
     { name: 'Yuei Honbu', hoursKey: 'footer.honbu_hours', addressKey: 'footer.honbu_address' },
-    { name: 'Yuei Cầu Giấy', hoursKey: 'footer.caugiay_hours', addressKey: 'footer.caugiay_address' },
+    {
+      name: 'Yuei Cầu Giấy',
+      hoursKey: 'footer.caugiay_hours',
+      addressKey: 'footer.caugiay_address',
+    },
     { name: 'Yuei Đống Đa', hoursKey: 'footer.dongda_hours', addressKey: 'footer.dongda_address' },
   ];
 
   readonly instructor = {
-    photo: 'assets/img/instructor.png',
+    photo: 'assets/img/instructor.avif',
     nameKey: 'about.instructor_name',
     dan: '5段 (Godan)',
     credKeys: [

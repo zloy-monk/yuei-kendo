@@ -1,4 +1,10 @@
-import { ApplicationConfig, provideBrowserGlobalErrorListeners } from '@angular/core';
+import {
+  ApplicationConfig,
+  inject,
+  provideAppInitializer,
+  provideBrowserGlobalErrorListeners,
+} from '@angular/core';
+import { ViewportScroller } from '@angular/common';
 import { provideHttpClient, withFetch } from '@angular/common/http';
 import { provideRouter, withComponentInputBinding, withInMemoryScrolling } from '@angular/router';
 import { provideClientHydration, withEventReplay } from '@angular/platform-browser';
@@ -16,6 +22,11 @@ export const appConfig: ApplicationConfig = {
       withComponentInputBinding(),
       withInMemoryScrolling({ scrollPositionRestoration: 'top', anchorScrolling: 'enabled' }),
     ),
+    // Anchor-скролл роутера игнорирует CSS scroll-margin — offset задаётся скроллеру
+    // напрямую (высота фиксированного навбара + запас, как scroll-mt-28)
+    provideAppInitializer(() => {
+      inject(ViewportScroller).setOffset([0, 80]);
+    }),
     // withEventReplay — запоминает события пользователя во время гидратации и воспроизводит их
     provideClientHydration(withEventReplay()),
   ],

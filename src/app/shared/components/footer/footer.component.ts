@@ -29,10 +29,14 @@ export class FooterComponent {
 
   // icon: null → TikTok, у него нет иконки в Lucide, в шаблоне inline SVG
   readonly socials = [
-    { icon: Facebook, href: 'https://facebook.com/yueikendo', label: 'Facebook' },
-    { icon: Instagram, href: 'https://instagram.com/yueikendo', label: 'Instagram' },
-    { icon: Youtube, href: 'https://youtube.com/@yueikendo', label: 'YouTube' },
-    { icon: null, href: 'https://tiktok.com/@ditapkendokhong', label: 'TikTok' },
+    // { icon: Facebook, href: 'https://facebook.com/yueikendo', label: 'Facebook' },
+    // { icon: Instagram, href: 'https://instagram.com/yueikendo', label: 'Instagram' },
+    // { icon: Youtube, href: 'https://youtube.com/@yueikendo', label: 'YouTube' },
+    // { icon: null, href: 'https://tiktok.com/@ditapkendokhong', label: 'TikTok' },
+    { icon: Facebook, href: '#', label: 'Facebook' },
+    { icon: Instagram, href: '#', label: 'Instagram' },
+    { icon: Youtube, href: '#', label: 'YouTube' },
+    { icon: null, href: '#', label: 'TikTok' },
   ];
 
   // TODO: вставить реальные embed URL из Google Maps (Поделиться → Встроить карту → src="...")
