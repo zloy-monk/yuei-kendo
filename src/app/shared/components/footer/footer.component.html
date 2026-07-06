@@ -42,39 +42,25 @@
           {{ translate.t('footer.schedule_title') }}
         </h4>
         <div class="flex flex-col gap-3 text-sm text-white/80">
-          <div>
-            <p class="font-medium text-white">Yuei Honbu</p>
-            <div class="flex items-center gap-1.5 text-white/60 mt-0.5">
-              <lucide-icon [img]="ClockIcon" [size]="13" />
-              {{ translate.t('footer.honbu_hours') }}
+          @for (loc of locations; track loc.name) {
+            <div>
+              <p class="font-medium text-white">{{ loc.name }}</p>
+              <div class="flex items-center gap-1.5 text-white/60 mt-0.5">
+                <lucide-icon [img]="ClockIcon" [size]="13" />
+                {{ translate.t(loc.hoursKey) }}
+              </div>
+              <!-- Адрес — кликабельная ссылка на Google Maps -->
+              <a
+                [href]="loc.mapLink"
+                target="_blank"
+                rel="noopener noreferrer"
+                class="flex items-start gap-1.5 text-white/60 mt-0.5 hover:text-primary transition-colors"
+              >
+                <lucide-icon [img]="MapPinIcon" [size]="13" class="mt-0.5 shrink-0" />
+                {{ translate.t(loc.addressKey) }}
+              </a>
             </div>
-            <div class="flex items-start gap-1.5 text-white/60 mt-0.5">
-              <lucide-icon [img]="MapPinIcon" [size]="13" class="mt-0.5 shrink-0" />
-              {{ translate.t('footer.honbu_address') }}
-            </div>
-          </div>
-          <div>
-            <p class="font-medium text-white">Yuei Cầu Giấy</p>
-            <div class="flex items-center gap-1.5 text-white/60 mt-0.5">
-              <lucide-icon [img]="ClockIcon" [size]="13" />
-              {{ translate.t('footer.caugiay_hours') }}
-            </div>
-            <div class="flex items-start gap-1.5 text-white/60 mt-0.5">
-              <lucide-icon [img]="MapPinIcon" [size]="13" class="mt-0.5 shrink-0" />
-              {{ translate.t('footer.caugiay_address') }}
-            </div>
-          </div>
-          <div>
-            <p class="font-medium text-white">Yuei Đống Đa</p>
-            <div class="flex items-center gap-1.5 text-white/60 mt-0.5">
-              <lucide-icon [img]="ClockIcon" [size]="13" />
-              {{ translate.t('footer.dongda_hours') }}
-            </div>
-            <div class="flex items-start gap-1.5 text-white/60 mt-0.5">
-              <lucide-icon [img]="MapPinIcon" [size]="13" class="mt-0.5 shrink-0" />
-              {{ translate.t('footer.dongda_address') }}
-            </div>
-          </div>
+          }
         </div>
       </div>
 
@@ -97,42 +83,10 @@
     </div>
   </div>
 
-  <!-- КАРТЫ — локации клуба -->
-  <div class="border-t border-white/10 py-4">
-    <div class="container mx-auto">
-      <div class="grid px-4 gap-4 grid-cols-1 md:grid-cols-2">
-        @for (loc of locations; track loc.name) {
-          <div class="relative aspect-[2/1] bg-surface">
-            @if (loc.mapSrc) {
-              <iframe
-                [src]="loc.mapSrc"
-                class="w-full h-full border-0 rounded-xl"
-                loading="lazy"
-                referrerpolicy="no-referrer-when-downgrade"
-                [title]="loc.name"
-              ></iframe>
-            } @else {
-              <!-- Плейсхолдер пока нет embed URL -->
-              <a
-                [href]="loc.mapLink"
-                target="_blank"
-                rel="noopener noreferrer"
-                class="flex flex-col items-center justify-center w-full h-full gap-2 text-white/40 hover:text-white/70 transition-colors text-sm"
-              >
-                <lucide-icon [img]="MapPinIcon" [size]="28" />
-                <span>{{ loc.name }}</span>
-              </a>
-            }
-          </div>
-        }
-      </div>
-    </div>
-  </div>
-
   <!-- НИЖНЯЯ СТРОКА — копирайт -->
-  <div class="border-t border-white/10 py-4">
-    <p class="text-center text-xs text-white/30">
-      © {{ currentYear }} Yuei Kendo Community · Hanoi, Vietnam
-    </p>
+  <div class="flex justify-center items-center border-t border-white/10 py-4">
+    <p class="text-center text-xs text-white/30">© {{ currentYear }}</p>
+    <img class="ml-0.5 w-6 aspect-square" src="assets/img/yuei.avif" alt="" />
+    <p class="text-center text-xs text-white/30">Yuei Kendo Community · Hanoi, Vietnam</p>
   </div>
 </footer>
