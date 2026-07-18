@@ -14,6 +14,7 @@ export class CountUpDirective implements OnDestroy {
   private el = inject(ElementRef<HTMLElement>);
   private platformId = inject(PLATFORM_ID);
   private observer?: IntersectionObserver;
+  private rafId?: number;
 
   constructor() {
     afterNextRender(() => {
@@ -37,9 +38,9 @@ export class CountUpDirective implements OnDestroy {
             // ease-out cubic — быстро в начале, плавное торможение в конце
             const eased = 1 - Math.pow(1 - progress, 3);
             node.textContent = Math.round(eased * target) + suffix;
-            if (progress < 1) requestAnimationFrame(tick);
+            if (progress < 1) this.rafId = requestAnimationFrame(tick);
           };
-          requestAnimationFrame(tick);
+          this.rafId = requestAnimationFrame(tick);
         },
         { threshold: 0.5 },
       );
@@ -49,5 +50,6 @@ export class CountUpDirective implements OnDestroy {
 
   ngOnDestroy() {
     this.observer?.disconnect();
+    if (this.rafId !== undefined) cancelAnimationFrame(this.rafId);
   }
 }

@@ -81,6 +81,7 @@
         <img
           src="assets/img/about-team.avif"
           alt="Yuei Kendo team"
+          loading="lazy"
           class="w-full h-full object-cover"
         />
       </div>
@@ -100,6 +101,7 @@
           <img
             [src]="img.src"
             [alt]="translate.t(img.altKey)"
+            loading="lazy"
             class="w-full h-full object-cover hover:scale-105 transition-transform duration-500"
           />
         </div>
@@ -118,12 +120,14 @@
         <img
           src="assets/img/yuei.avif"
           alt=""
+          loading="lazy"
           class="absolute inset-x-0 bottom-0 aspect-square w-full object-contain"
         />
         <!-- Фото: верх свободный (вылезает над лого), низ на одном уровне с лого, ширина не выходит за лого -->
         <img
           [src]="instructor.photo"
           [alt]="translate.t(instructor.nameKey)"
+          loading="lazy"
           class="absolute bottom-0 left-1/2 -translate-x-1/2 w-[70%] h-[90%] object-cover object-top rounded-b-full"
         />
       </div>
