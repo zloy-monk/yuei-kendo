@@ -48,17 +48,17 @@ export class HomeComponent {
     {
       img: this.galleryImgs[0],
       class:
-        'left-[80%] top-[4%] w-[35%] aspect-[4/3] z-10 float-x [animation-delay:2.1s] [animation-duration:7s]',
+        'left-[75%] top-[4%] w-[35%] aspect-[4/3] z-10 float-x [animation-delay:2.1s] [animation-duration:7s]',
     },
     // верх-лево: центр наезжает на его правый нижний угол; дуга
     {
       img: this.galleryImgs[1],
-      class: 'left-0 top-0 w-[40%] aspect-[4/3] z-10 float-a [animation-delay:0.4s]',
+      class: 'left-[-10%] top-0 w-[40%] aspect-[4/3] z-10 float-a [animation-delay:0.4s]',
     },
     // ЦЕНТР — главное экшн-фото, верхний слой (кроме тайла с z-40); вертикаль, медленно
     {
       img: this.galleryImgs[2],
-      class: 'left-[30%] top-[8%] w-[45%] aspect-square z-30 float-y [animation-duration:7s]',
+      class: 'left-[27%] top-[8%] w-[45%] aspect-square z-30 float-y [animation-duration:7s]',
     },
     // лево-низ: подныривает ПОД центр; обратная дуга
     {
@@ -75,7 +75,7 @@ export class HomeComponent {
     {
       img: this.galleryImgs[5],
       class:
-        'left-[52%] top-[60%] w-[45%] aspect-[4/3] z-40 float-x [animation-delay:1.1s] [animation-duration:9s]',
+        'left-[47%] top-[60%] w-[45%] aspect-[4/3] z-40 float-x [animation-delay:1.1s] [animation-duration:9s]',
     },
   ];
 
