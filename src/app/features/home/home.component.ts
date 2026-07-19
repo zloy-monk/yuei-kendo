@@ -32,7 +32,7 @@ export class HomeComponent {
   // Ключи 'about.*' переиспользуются намеренно — секция инструктора
   // отражает контент страницы About, отдельного дубля в i18n не заводим.
   // 6 фото галереи; раскладки ниже ссылаются на эти объекты (src/alt не дублируются)
-  private readonly galleryImgs = [
+  readonly galleryImgs = [
     { src: 'assets/img/gallery-1.avif', altKey: 'about.gallery_alt_1' },
     { src: 'assets/img/gallery-2.avif', altKey: 'about.gallery_alt_2' },
     { src: 'assets/img/gallery-3.avif', altKey: 'about.gallery_alt_3' },
@@ -148,7 +148,7 @@ export class HomeComponent {
   ];
 
   readonly instructor = {
-    photo: 'assets/img/instructor.avif',
+    photo: 'assets/img/object.png',
     nameKey: 'about.instructor_name',
     dan: '5段 (Godan)',
     credKeys: [

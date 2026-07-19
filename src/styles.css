@@ -1,5 +1,12 @@
 @import 'tailwindcss';
 
+.container {
+  width: 100%;
+  max-width: 1280px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
 @theme {
   --color-primary: #ab0809;
   --color-dark: #111111;
@@ -37,6 +44,43 @@ html {
     opacity: 1;
     transform: none;
     transition: none;
+  }
+}
+
+.fire-glow {
+  border-radius: 40%;
+  background: radial-gradient(circle at 50% 25%, rgba(255, 221, 150, 0.7), rgba(255, 120, 50, 0.12) 35%, transparent 55%);
+  filter: blur(32px);
+  transform: scale(1.05);
+  animation: flame-flicker 2.8s ease-in-out infinite;
+}
+
+.fire-glow::after {
+  content: '';
+  position: absolute;
+  inset: 15% 20% 0 20%;
+  border-radius: 55%;
+  background: radial-gradient(circle at 50% 20%, rgba(255, 255, 255, 0.6), rgba(255, 150, 40, 0.05) 55%, transparent 80%);
+  filter: blur(10px);
+  opacity: 0.85;
+}
+
+@keyframes flame-flicker {
+  0%, 100% {
+    transform: scale(1.03);
+    opacity: 0.85;
+  }
+  25% {
+    transform: scale(1.08) translateY(-2px);
+    opacity: 0.95;
+  }
+  50% {
+    transform: scale(1.02) translateY(1px);
+    opacity: 0.8;
+  }
+  75% {
+    transform: scale(1.06) translateY(-1px);
+    opacity: 0.9;
   }
 }
 
