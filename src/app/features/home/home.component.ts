@@ -31,13 +31,49 @@ export class HomeComponent {
 
   // Ключи 'about.*' переиспользуются намеренно — секция инструктора
   // отражает контент страницы About, отдельного дубля в i18n не заводим.
-  readonly gallery = [
+  // 6 фото галереи; раскладки ниже ссылаются на эти объекты (src/alt не дублируются)
+  private readonly galleryImgs = [
     { src: 'assets/img/gallery-1.avif', altKey: 'about.gallery_alt_1' },
     { src: 'assets/img/gallery-2.avif', altKey: 'about.gallery_alt_2' },
     { src: 'assets/img/gallery-3.avif', altKey: 'about.gallery_alt_3' },
     { src: 'assets/img/gallery-4.avif', altKey: 'about.gallery_alt_4' },
     { src: 'assets/img/gallery-5.avif', altKey: 'about.gallery_alt_5' },
     { src: 'assets/img/gallery-6.avif', altKey: 'about.gallery_alt_6' },
+  ];
+
+  // Десктоп-коллаж: 3 колонки, боковые с одинаковым сдвигом вниз — симметрия вокруг центра
+  readonly galleryCols = [
+    {
+      class: 'flex-1 pt-16',
+      imgs: [
+        { img: this.galleryImgs[0], aspect: 'aspect-[3/4]' },
+        { img: this.galleryImgs[1], aspect: 'aspect-square' },
+      ],
+    },
+    {
+      class: 'flex-[1.7]',
+      imgs: [
+        { img: this.galleryImgs[2], aspect: 'aspect-[4/5]' },
+        { img: this.galleryImgs[3], aspect: 'aspect-[16/9]' },
+      ],
+    },
+    {
+      class: 'flex-1 pt-16',
+      imgs: [
+        { img: this.galleryImgs[4], aspect: 'aspect-square' },
+        { img: this.galleryImgs[5], aspect: 'aspect-[3/4]' },
+      ],
+    },
+  ];
+
+  // Мобильная раскладка: главное фото на всю ширину, потом 2×2, снизу широкое
+  readonly galleryMobile = [
+    { img: this.galleryImgs[2], class: 'col-span-2 aspect-[4/3]' },
+    { img: this.galleryImgs[0], class: 'aspect-square' },
+    { img: this.galleryImgs[4], class: 'aspect-square' },
+    { img: this.galleryImgs[1], class: 'aspect-square' },
+    { img: this.galleryImgs[5], class: 'aspect-square' },
+    { img: this.galleryImgs[3], class: 'col-span-2 aspect-[16/9]' },
   ];
 
   readonly stats = [
