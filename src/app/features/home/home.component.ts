@@ -6,6 +6,7 @@ import { GOOGLE_FORM_URL, SITE_URL } from '../../core/constants';
 import { FAQ_TEASER_ITEMS } from '../../core/faq-data';
 import { FaqAccordionComponent } from '../../shared/components/faq-accordion/faq-accordion.component';
 import { TrialCtaComponent } from '../../shared/components/trial-cta/trial-cta.component';
+import { DitherBgComponent } from '../../shared/components/dither-bg/dither-bg.component';
 import { RevealDirective } from '../../shared/directives/reveal.directive';
 import { CountUpDirective } from '../../shared/directives/count-up.directive';
 
@@ -16,6 +17,7 @@ import { CountUpDirective } from '../../shared/directives/count-up.directive';
     RouterLink,
     FaqAccordionComponent,
     TrialCtaComponent,
+    DitherBgComponent,
     RevealDirective,
     CountUpDirective,
   ],

@@ -22,8 +22,9 @@
 </section>
 
 <!-- ACCORDION -->
-<section class="bg-dark text-white py-20">
-  <div class="w-full max-w-7xl mx-auto px-6 max-w-3xl">
+<section class="relative overflow-hidden bg-dark text-white py-20">
+  <app-dither-bg />
+  <div class="relative z-10 w-full max-w-7xl mx-auto px-6 max-w-3xl">
     <app-faq-accordion [items]="items" />
   </div>
 </section>

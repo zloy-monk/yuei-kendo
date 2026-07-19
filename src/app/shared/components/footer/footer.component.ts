@@ -9,11 +9,12 @@ import {
   Clock,
 } from 'lucide-angular';
 import { TranslateService } from '../../../core/services/translate.service';
+import { DitherBgComponent } from '../dither-bg/dither-bg.component';
 
 @Component({
   selector: 'app-footer',
   standalone: true,
-  imports: [LucideAngularModule],
+  imports: [LucideAngularModule, DitherBgComponent],
   templateUrl: './footer.component.html',
 })
 export class FooterComponent {

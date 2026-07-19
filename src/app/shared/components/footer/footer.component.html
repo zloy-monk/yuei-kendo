@@ -1,6 +1,7 @@
-<footer class="bg-dark border-t border-white/10 text-white">
+<footer class="relative overflow-hidden bg-dark border-t border-white/10 text-white">
+  <app-dither-bg />
   <!-- ВЕРХНЯЯ ЧАСТЬ — лого + навигация + контакты -->
-  <div class="w-full max-w-7xl mx-auto px-6 py-12">
+  <div class="relative z-10 w-full max-w-7xl mx-auto px-6 py-12">
     <div class="grid grid-cols-1 md:grid-cols-3 gap-10">
       <!-- Колонка 1: Лого и описание -->
       <div class="flex flex-col gap-4">
@@ -84,7 +85,7 @@
   </div>
 
   <!-- НИЖНЯЯ СТРОКА — копирайт -->
-  <div class="flex justify-center items-center border-t border-white/10 py-4">
+  <div class="relative z-10 flex justify-center items-center border-t border-white/10 py-4">
     <p class="text-center text-xs text-white/30">© {{ currentYear }}</p>
     <img class="ml-0.5 w-6 aspect-square" src="assets/img/yuei.avif" alt="" />
     <p class="text-center text-xs text-white/30">Yuei Kendo Community · Hanoi, Vietnam</p>

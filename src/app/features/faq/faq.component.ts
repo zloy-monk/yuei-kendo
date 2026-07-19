@@ -5,11 +5,12 @@ import { SITE_URL } from '../../core/constants';
 import { FAQ_ITEMS } from '../../core/faq-data';
 import { FaqAccordionComponent } from '../../shared/components/faq-accordion/faq-accordion.component';
 import { TrialCtaComponent } from '../../shared/components/trial-cta/trial-cta.component';
+import { DitherBgComponent } from '../../shared/components/dither-bg/dither-bg.component';
 
 @Component({
   selector: 'app-faq',
   standalone: true,
-  imports: [FaqAccordionComponent, TrialCtaComponent],
+  imports: [FaqAccordionComponent, TrialCtaComponent, DitherBgComponent],
   templateUrl: './faq.component.html',
 })
 export class FaqComponent {
