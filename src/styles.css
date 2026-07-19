@@ -74,3 +74,87 @@ html {
   pointer-events: none;
   z-index: 0;
 }
+
+/* Парение карточек галереи: мягкое покачивание вверх-вниз.
+   Разнобой фаз задаётся per-карточно через [animation-delay:*]/[animation-duration:*] */
+@keyframes float-drift {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-12px);
+  }
+}
+/* .float-anim {
+  animation: float-drift 6s ease-in-out infinite;
+} */
+/* Траектории парения тайлов галереи: y — вертикаль, x — горизонталь,
+   a/b — дуги в противоположных направлениях. Разброс фаз — per-тайл
+   через [animation-delay:*]/[animation-duration:*] */
+@keyframes drift-y {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-12px);
+  }
+}
+@keyframes drift-x {
+  0%,
+  100% {
+    transform: translateX(0);
+  }
+  50% {
+    transform: translateX(10px);
+  }
+}
+@keyframes drift-a {
+  0%,
+  100% {
+    transform: translate(0, 0);
+  }
+  25% {
+    transform: translate(6px, -8px);
+  }
+  50% {
+    transform: translate(0, -13px);
+  }
+  75% {
+    transform: translate(-6px, -6px);
+  }
+}
+@keyframes drift-b {
+  0%,
+  100% {
+    transform: translate(0, 0);
+  }
+  33% {
+    transform: translate(-8px, 5px);
+  }
+  66% {
+    transform: translate(7px, -7px);
+  }
+}
+.float-y {
+  animation: drift-y 6s ease-in-out infinite;
+}
+.float-x {
+  animation: drift-x 8s ease-in-out infinite;
+}
+.float-a {
+  animation: drift-a 9s ease-in-out infinite;
+}
+.float-b {
+  animation: drift-b 11s ease-in-out infinite;
+}
+@media (prefers-reduced-motion: reduce) {
+  /* .float-anim, */
+  .float-y,
+  .float-x,
+  .float-a,
+  .float-b {
+    animation: none;
+  }
+}

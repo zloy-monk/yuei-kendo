@@ -41,39 +41,80 @@ export class HomeComponent {
     { src: 'assets/img/gallery-6.avif', altKey: 'about.gallery_alt_6' },
   ];
 
-  // Десктоп-коллаж: 3 колонки, боковые с одинаковым сдвигом вниз — симметрия вокруг центра
-  readonly galleryCols = [
+  // Freeform-коллаж (md+): холст aspect-[10/9], тайлы absolute, позиции/размеры — с референса.
+  // Слои: z-30 центр, z-40 тайл поверх центра, z-10/20 — под ним. Два правых тайла ни на кого не наезжают.
+  readonly galleryTiles = [
+    // верх-право: парит отдельно; горизонталь
     {
-      class: 'flex-1 pt-16',
-      imgs: [
-        { img: this.galleryImgs[0], aspect: 'aspect-[3/4]' },
-        { img: this.galleryImgs[1], aspect: 'aspect-square' },
-      ],
+      img: this.galleryImgs[0],
+      class:
+        'left-[80%] top-[4%] w-[35%] aspect-[4/3] z-10 float-x [animation-delay:2.1s] [animation-duration:7s]',
     },
+    // верх-лево: центр наезжает на его правый нижний угол; дуга
     {
-      class: 'flex-[1.7]',
-      imgs: [
-        { img: this.galleryImgs[2], aspect: 'aspect-[4/5]' },
-        { img: this.galleryImgs[3], aspect: 'aspect-[16/9]' },
-      ],
+      img: this.galleryImgs[1],
+      class: 'left-0 top-0 w-[40%] aspect-[4/3] z-10 float-a [animation-delay:0.4s]',
     },
+    // ЦЕНТР — главное экшн-фото, верхний слой (кроме тайла с z-40); вертикаль, медленно
     {
-      class: 'flex-1 pt-16',
-      imgs: [
-        { img: this.galleryImgs[4], aspect: 'aspect-square' },
-        { img: this.galleryImgs[5], aspect: 'aspect-[3/4]' },
-      ],
+      img: this.galleryImgs[2],
+      class: 'left-[30%] top-[8%] w-[45%] aspect-square z-30 float-y [animation-duration:7s]',
+    },
+    // лево-низ: подныривает ПОД центр; обратная дуга
+    {
+      img: this.galleryImgs[3],
+      class: 'left-[4%] top-[42%] w-[35%] aspect-[3/4] z-20 float-b [animation-delay:1.5s]',
+    },
+    // право-середина: парит отдельно; дуга, самая медленная
+    {
+      img: this.galleryImgs[4],
+      class:
+        'left-[78%] top-[38%] w-[30%] aspect-[4/5] z-10 float-a [animation-delay:2.8s] [animation-duration:12s]',
+    },
+    // низ-право: лежит ПОВЕРХ угла центра; горизонталь
+    {
+      img: this.galleryImgs[5],
+      class:
+        'left-[52%] top-[60%] w-[45%] aspect-[4/3] z-40 float-x [animation-delay:1.1s] [animation-duration:9s]',
     },
   ];
 
   // Мобильная раскладка: главное фото на всю ширину, потом 2×2, снизу широкое
-  readonly galleryMobile = [
-    { img: this.galleryImgs[2], class: 'col-span-2 aspect-[4/3]' },
-    { img: this.galleryImgs[0], class: 'aspect-square' },
-    { img: this.galleryImgs[4], class: 'aspect-square' },
-    { img: this.galleryImgs[1], class: 'aspect-square' },
-    { img: this.galleryImgs[5], class: 'aspect-square' },
-    { img: this.galleryImgs[3], class: 'col-span-2 aspect-[16/9]' },
+  // Мобильный freeform-коллаж: холст aspect-[4/5], та же логика слоёв, что на десктопе
+  readonly galleryMobileTiles = [
+    // верх-право: парит отдельно; горизонталь
+    {
+      img: this.galleryImgs[0],
+      class:
+        'left-[58%] top-[6%] w-[40%] aspect-square z-40 float-x [animation-delay:0.6s] [animation-duration:6s]',
+    },
+    // верх-лево: центр наезжает на его угол; обратная дуга
+    {
+      img: this.galleryImgs[1],
+      class: 'left-0 top-0 w-[44%] aspect-[4/3] z-10 float-b [animation-delay:1.1s]',
+    },
+    // ЦЕНТР — главное экшн-фото; вертикаль, медленно
+    {
+      img: this.galleryImgs[2],
+      class: 'left-[20%] top-[16%] w-[56%] aspect-[3/4] z-30 float-y [animation-duration:8s]',
+    },
+    // лево-низ: подныривает ПОД центр; дуга
+    {
+      img: this.galleryImgs[3],
+      class: 'left-0 top-[48%] w-[34%] aspect-[3/4] z-20 float-a [animation-delay:2.6s]',
+    },
+    // право-середина: парит отдельно; вертикаль
+    {
+      img: this.galleryImgs[4],
+      class:
+        'left-[78%] top-[40%] w-[22%] aspect-[4/5] z-10 float-y [animation-delay:2.3s] [animation-duration:5s]',
+    },
+    // низ-право: ПОВЕРХ угла центра; обратная дуга, медленно
+    {
+      img: this.galleryImgs[5],
+      class:
+        'left-[40%] top-[70%] w-[60%] aspect-[4/3] z-40 float-b [animation-delay:1.8s] [animation-duration:13s]',
+    },
   ];
 
   readonly stats = [
@@ -83,15 +124,27 @@ export class HomeComponent {
     { key: 'about.stat_members', value: '100+' },
   ];
 
-  // Тизер расписания — те же i18n-ключи, что и в футере (DRY)
+  // Тизер расписания — те же i18n-ключи, что и в футере (DRY);
+  // animClass — разнобой фаз парения, как у карточек галереи
   readonly schedule = [
-    { name: 'Yuei Honbu', hoursKey: 'footer.honbu_hours', addressKey: 'footer.honbu_address' },
+    {
+      name: 'Yuei Honbu',
+      hoursKey: 'footer.honbu_hours',
+      addressKey: 'footer.honbu_address',
+      animClass: '[animation-delay:0.7s]',
+    },
     {
       name: 'Yuei Cầu Giấy',
       hoursKey: 'footer.caugiay_hours',
       addressKey: 'footer.caugiay_address',
+      animClass: '[animation-delay:2.2s] [animation-duration:7s]',
     },
-    { name: 'Yuei Đống Đa', hoursKey: 'footer.dongda_hours', addressKey: 'footer.dongda_address' },
+    {
+      name: 'Yuei Đống Đa',
+      hoursKey: 'footer.dongda_hours',
+      addressKey: 'footer.dongda_address',
+      animClass: '[animation-delay:1.4s] [animation-duration:5s]',
+    },
   ];
 
   readonly instructor = {
